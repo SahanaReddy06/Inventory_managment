@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StockPro | Premium Inventory Management</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>StockPro 🚀</h1>
+      </header>
+
+      <section class="dashboard">
+        <div class="stats-grid">
+          <div class="glass-card stat-item">
+            <span class="stat-value" id="total-products">0</span>
+            <span class="stat-label">Total Products</span>
+          </div>
+          <div class="glass-card stat-item">
+            <span class="stat-value" id="low-stock-count" style="color: var(--warning);">0</span>
+            <span class="stat-label">Low Stock Items</span>
+          </div>
+          <div class="glass-card stat-item">
+            <span class="stat-value" id="total-inventory-value">$0</span>
+            <span class="stat-label">Total Value</span>
+          </div>
+        </div>
+      </section>
+
+      <main>
+        <div class="glass-card animate-in">
+          <h2 class="section-title">Manage Inventory</h2>
+          
+          <form id="product-form">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="input-group">
+                <label for="p-name">Product Name</label>
+                <input type="text" id="p-name" placeholder="E.g. MacBook Pro M3" required />
+              </div>
+              <div class="input-group">
+                <label for="p-category">Category</label>
+                <select id="p-category">
+                  <option value="Electronics">Electronics</option>
+                  <option value="Office">Office Supplies</option>
+                  <option value="Furniture">Furniture</option>
+                  <option value="Software">Software</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+              <div class="input-group">
+                <label for="p-price">Price ($)</label>
+                <input type="number" id="p-price" step="0.01" min="0" placeholder="0.00" required />
+              </div>
+              <div class="input-group">
+                <label for="p-stock">Initial Stock</label>
+                <input type="number" id="p-stock" min="0" placeholder="0" required />
+              </div>
+              <div class="input-group">
+                <label for="p-threshold">Low Stock Alert at</label>
+                <input type="number" id="p-threshold" min="1" value="5" />
+              </div>
+            </div>
+
+            <button type="submit" id="submit-btn" style="width: fit-content; margin-top: 1rem;">Add Product</button>
+          </form>
+        </div>
+
+        <div class="table-container glass-card animate-in" style="margin-top: 2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2 class="section-title" style="margin-bottom: 0;">Stock Inventory</h2>
+            <div style="display: flex; gap: 1rem;">
+              <input type="text" id="search-input" placeholder="Search products..." style="padding: 0.5rem 1rem;" />
+              <button id="filter-low-stock" class="secondary btn-small">Show Low Stock Only</button>
+            </div>
+          </div>
+          
+          <table id="products-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="products-body">
+              <!-- Products will be injected here -->
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
